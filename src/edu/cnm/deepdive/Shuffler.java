@@ -17,6 +17,11 @@ public class Shuffler {
     System.out.println(Arrays.toString(deck));
     shuffle(deck);
     System.out.println(Arrays.toString(deck));
+
+    String[] names = {"bashful", "doc", "sleepy", "sneezy"};
+    System.out.println(Arrays.toString(names));
+    shuffle(names);
+    System.out.println(Arrays.toString(names));
   }
 
   public static void shuffle(int[] deck) {
@@ -99,14 +104,26 @@ public class Shuffler {
 
   public static void shuffle(short[] deck, Random rng) {
     for (int i = deck.length - 1; i > 0; i--) {
+    int swap = rng.nextInt(i + 1);
+    short temp = deck[swap];
+    deck[swap] = deck[i];
+    deck[i] = temp;
+  }
+}
+
+  public static void shuffle(short[] deck) {
+    shuffle(deck, new Random());
+  }
+
+  public static <T> void shuffle(T[] deck, Random rng){
+    for (int i = deck.length - 1; i > 0; i--) {
       int swap = rng.nextInt(i + 1);
-      short temp = deck[swap];
+      T temp = deck[swap];
       deck[swap] = deck[i];
       deck[i] = temp;
     }
   }
-
-  public static void shuffle(short[] deck) {
+  public static <T> void shuffle(T[] deck) {
     shuffle(deck, new Random());
   }
 }
